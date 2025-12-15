@@ -33,8 +33,6 @@
 
 ### 1. Настройка окружения
 ```bash
-cd gan-architecture-study
-
 # Создание виртуального окружения conda
 conda env create -f environment.yaml
 
