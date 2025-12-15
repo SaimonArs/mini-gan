@@ -1,7 +1,5 @@
 # Курсовой проект: Mini-GAN и влияние архитектуры
 
-**Вариант 5**
-
 ## Цель
 Исследовать связь архитектуры генератора с устойчивостью обучения Generative Adversarial Networks (GAN) на примере датасета MNIST.
 
@@ -10,6 +8,26 @@
 1. **Базовый GAN** – стандартные сверточные слои
 2. **GAN с residual-блоками** – добавление skip-соединений в генератор
 3. **GAN с self-attention** – включение механизма внимания в архитектуру генератора
+
+## Результаты обучения
+### DC-GAN:
+#### Генерации по эпохам
+![GIF](./result/base_dcgan/A451/res.gif)
+#### График потерь
+![losses](./result/base_dcgan/A451/losses.png)
+
+### residual DC-GAN:
+#### Генерации по эпохам
+![GIF](./result/residual_dcgan/A451/res.gif)
+#### График потерь
+![losses](./result/residual_dcgan/A451/losses.png)
+
+### residual DC-GAN (self-attention в генераторе):
+#### Генерации по эпохам
+![GIF](./result/selfattn_residual_dcgan/A451/res.gif)
+#### График потерь
+![losses](./result/selfattn_residual_dcgan/A451/losses.png)
+
 
 ## Установка и запуск
 
@@ -24,12 +42,12 @@ conda env create -f environment.yaml
 conda activate mini-GAN
 ```
 
-### 2. Jupyter lab
+### 2. Запуск Jupyterlab 
 ```bash
 jupyterlab .
 ```
 
-Информация о коде
+### Информация о коде
 
 Базовый dc-dcgan:
 - base_dcgan.ipynb - обучение 
@@ -38,7 +56,7 @@ jupyterlab .
 dc-gan c добавлением остаточных блоков:
 - residual_dcgan.ipynb - обучение 
 - residual_dcgan_show.ipynb - результат обучения (генерация для оценки)
-- 
+
 dc-gan c добавлением остаточных блоков и слоя самовнимания в генераторе:
 - selfattn_residual_dcgan.ipynb - обучение 
 - selfattn_residual_dcgan_show.ipynb - результат обучения (генерация для оценки)
