@@ -1,0 +1,17 @@
+name: mini-GAN
+channels:
+  - pytorch
+  - conda-forge
+  - default
+dependencies:
+  - jupyterlab
+  - jupyter-lsp
+  - python
+  - ipywidgets
+  - jupyterlab_widgets
+  - tqdm
+  - pytorch
+  - torchvision
+  - torchinfo
+  - numpy
+  - matplotlib 

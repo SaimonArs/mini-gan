@@ -1,0 +1,180 @@
+================
+device: cuda
+latent_dim: 100
+epochs: 100
+learning_rate_G: 0.0002
+learning_rate_D: 0.0002
+dropout_p: 0.2
+betas: (0.5,0.999)
+seed: 451
+================
+==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+BasicGenerator                           [1, 1, 28, 28]            --
+├─Sequential: 1-1                        [1, 1, 28, 28]            --
+│    └─ConvTranspose2d: 2-1              [1, 128, 7, 7]            627,200
+│    └─ReLU: 2-2                         [1, 128, 7, 7]            --
+│    └─ConvTranspose2d: 2-3              [1, 64, 14, 14]           131,072
+│    └─BatchNorm2d: 2-4                  [1, 64, 14, 14]           128
+│    └─ReLU: 2-5                         [1, 64, 14, 14]           --
+│    └─ResidualBlock: 2-6                [1, 64, 14, 14]           --
+│    │    └─Sequential: 3-1              [1, 64, 14, 14]           73,984
+│    └─ReLU: 2-7                         [1, 64, 14, 14]           --
+│    └─SelfAttention: 2-8                [1, 64, 14, 14]           1
+│    │    └─Conv2d: 3-2                  [1, 32, 14, 14]           2,080
+│    │    └─Conv2d: 3-3                  [1, 32, 14, 14]           2,080
+│    │    └─Conv2d: 3-4                  [1, 64, 14, 14]           4,160
+│    └─ConvTranspose2d: 2-9              [1, 32, 28, 28]           32,768
+│    └─BatchNorm2d: 2-10                 [1, 32, 28, 28]           64
+│    └─ReLU: 2-11                        [1, 32, 28, 28]           --
+│    └─ResidualBlock: 2-12               [1, 32, 28, 28]           --
+│    │    └─Sequential: 3-5              [1, 32, 28, 28]           18,560
+│    └─ReLU: 2-13                        [1, 32, 28, 28]           --
+│    └─ConvTranspose2d: 2-14             [1, 1, 28, 28]            289
+│    └─Tanh: 2-15                        [1, 1, 28, 28]            --
+==========================================================================================
+Total params: 892,386
+Trainable params: 892,386
+Non-trainable params: 0
+Total mult-adds (Units.MEGABYTES): 112.87
+==========================================================================================
+Input size (MB): 0.00
+Forward/backward pass size (MB): 2.06
+Params size (MB): 3.57
+Estimated Total Size (MB): 5.63
+==========================================================================================
+==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+BasicDiscriminator                       [1, 1, 1, 1]              --
+├─Sequential: 1-1                        [1, 1, 1, 1]              --
+│    └─Conv2d: 2-1                       [1, 32, 28, 28]           288
+│    └─Dropout2d: 2-2                    [1, 32, 28, 28]           --
+│    └─LeakyReLU: 2-3                    [1, 32, 28, 28]           --
+│    └─Conv2d: 2-4                       [1, 64, 14, 14]           32,768
+│    └─BatchNorm2d: 2-5                  [1, 64, 14, 14]           128
+│    └─Dropout2d: 2-6                    [1, 64, 14, 14]           --
+│    └─LeakyReLU: 2-7                    [1, 64, 14, 14]           --
+│    └─ResidualBlock: 2-8                [1, 64, 14, 14]           --
+│    │    └─Sequential: 3-1              [1, 64, 14, 14]           73,984
+│    └─LeakyReLU: 2-9                    [1, 64, 14, 14]           --
+│    └─Conv2d: 2-10                      [1, 128, 7, 7]            131,072
+│    └─BatchNorm2d: 2-11                 [1, 128, 7, 7]            256
+│    └─Dropout2d: 2-12                   [1, 128, 7, 7]            --
+│    └─LeakyReLU: 2-13                   [1, 128, 7, 7]            --
+│    └─ResidualBlock: 2-14               [1, 128, 7, 7]            --
+│    │    └─Sequential: 3-2              [1, 128, 7, 7]            295,424
+│    └─LeakyReLU: 2-15                   [1, 128, 7, 7]            --
+│    └─Conv2d: 2-16                      [1, 1, 1, 1]              6,273
+==========================================================================================
+Total params: 540,193
+Trainable params: 540,193
+Non-trainable params: 0
+Total mult-adds (Units.MEGABYTES): 41.98
+==========================================================================================
+Input size (MB): 0.00
+Forward/backward pass size (MB): 1.10
+Params size (MB): 2.16
+Estimated Total Size (MB): 3.27
+==========================================================================================
+epoch [  1/100], g_loss: 1.39466, d_loss: 1.18745
+epoch [  2/100], g_loss: 1.15195, d_loss: 1.21400
+epoch [  3/100], g_loss: 1.14166, d_loss: 1.22388
+epoch [  4/100], g_loss: 1.15364, d_loss: 1.21836
+epoch [  5/100], g_loss: 1.13080, d_loss: 1.23682
+epoch [  6/100], g_loss: 1.09566, d_loss: 1.25337
+epoch [  7/100], g_loss: 1.04200, d_loss: 1.27143
+epoch [  8/100], g_loss: 1.02703, d_loss: 1.28473
+epoch [  9/100], g_loss: 1.01167, d_loss: 1.28916
+epoch [ 10/100], g_loss: 1.00598, d_loss: 1.29362
+epoch [ 11/100], g_loss: 1.00286, d_loss: 1.29692
+epoch [ 12/100], g_loss: 0.99653, d_loss: 1.29695
+epoch [ 13/100], g_loss: 1.03599, d_loss: 1.29572
+epoch [ 14/100], g_loss: 0.98772, d_loss: 1.29953
+epoch [ 15/100], g_loss: 0.98251, d_loss: 1.30391
+epoch [ 16/100], g_loss: 0.98445, d_loss: 1.30719
+epoch [ 17/100], g_loss: 0.98692, d_loss: 1.30492
+epoch [ 18/100], g_loss: 0.99158, d_loss: 1.30120
+epoch [ 19/100], g_loss: 0.99409, d_loss: 1.30535
+epoch [ 20/100], g_loss: 0.99483, d_loss: 1.30310
+epoch [ 21/100], g_loss: 0.99900, d_loss: 1.30440
+epoch [ 22/100], g_loss: 1.00407, d_loss: 1.29961
+epoch [ 23/100], g_loss: 0.99946, d_loss: 1.29918
+epoch [ 24/100], g_loss: 0.99573, d_loss: 1.29928
+epoch [ 25/100], g_loss: 0.99872, d_loss: 1.30185
+epoch [ 26/100], g_loss: 0.99337, d_loss: 1.29890
+epoch [ 27/100], g_loss: 0.99557, d_loss: 1.30089
+epoch [ 28/100], g_loss: 0.99752, d_loss: 1.30106
+epoch [ 29/100], g_loss: 0.99514, d_loss: 1.30168
+epoch [ 30/100], g_loss: 0.98795, d_loss: 1.29912
+epoch [ 31/100], g_loss: 0.98613, d_loss: 1.30640
+epoch [ 32/100], g_loss: 0.99437, d_loss: 1.29971
+epoch [ 33/100], g_loss: 0.98776, d_loss: 1.30039
+epoch [ 34/100], g_loss: 0.99668, d_loss: 1.30660
+epoch [ 35/100], g_loss: 0.98514, d_loss: 1.30083
+epoch [ 36/100], g_loss: 0.98750, d_loss: 1.29987
+epoch [ 37/100], g_loss: 0.98707, d_loss: 1.30379
+epoch [ 38/100], g_loss: 0.98867, d_loss: 1.30531
+epoch [ 39/100], g_loss: 0.98846, d_loss: 1.30739
+epoch [ 40/100], g_loss: 0.98790, d_loss: 1.30508
+epoch [ 41/100], g_loss: 0.98404, d_loss: 1.30189
+epoch [ 42/100], g_loss: 0.98254, d_loss: 1.30366
+epoch [ 43/100], g_loss: 0.98541, d_loss: 1.30127
+epoch [ 44/100], g_loss: 0.99182, d_loss: 1.30584
+epoch [ 45/100], g_loss: 0.99179, d_loss: 1.30022
+epoch [ 46/100], g_loss: 0.98969, d_loss: 1.30298
+epoch [ 47/100], g_loss: 0.99573, d_loss: 1.30508
+epoch [ 48/100], g_loss: 0.99129, d_loss: 1.30318
+epoch [ 49/100], g_loss: 0.98398, d_loss: 1.30392
+epoch [ 50/100], g_loss: 0.99358, d_loss: 1.30302
+epoch [ 51/100], g_loss: 0.99090, d_loss: 1.29862
+epoch [ 52/100], g_loss: 0.99906, d_loss: 1.30358
+epoch [ 53/100], g_loss: 0.99725, d_loss: 1.30206
+epoch [ 54/100], g_loss: 1.00027, d_loss: 1.29706
+epoch [ 55/100], g_loss: 0.99517, d_loss: 1.30195
+epoch [ 56/100], g_loss: 0.99238, d_loss: 1.29644
+epoch [ 57/100], g_loss: 1.01369, d_loss: 1.29663
+epoch [ 58/100], g_loss: 1.01464, d_loss: 1.28764
+epoch [ 59/100], g_loss: 1.01031, d_loss: 1.29263
+epoch [ 60/100], g_loss: 1.00996, d_loss: 1.29050
+epoch [ 61/100], g_loss: 1.02060, d_loss: 1.29062
+epoch [ 62/100], g_loss: 1.02960, d_loss: 1.28390
+epoch [ 63/100], g_loss: 1.02424, d_loss: 1.28696
+epoch [ 64/100], g_loss: 1.02360, d_loss: 1.28618
+epoch [ 65/100], g_loss: 1.02951, d_loss: 1.28405
+epoch [ 66/100], g_loss: 1.02434, d_loss: 1.28166
+epoch [ 67/100], g_loss: 1.03298, d_loss: 1.28221
+epoch [ 68/100], g_loss: 1.03305, d_loss: 1.28281
+epoch [ 69/100], g_loss: 1.02904, d_loss: 1.28238
+epoch [ 70/100], g_loss: 1.04395, d_loss: 1.27506
+epoch [ 71/100], g_loss: 1.04760, d_loss: 1.28600
+epoch [ 72/100], g_loss: 1.05322, d_loss: 1.26812
+epoch [ 73/100], g_loss: 1.05645, d_loss: 1.27189
+epoch [ 74/100], g_loss: 1.07195, d_loss: 1.27003
+epoch [ 75/100], g_loss: 1.06038, d_loss: 1.27214
+epoch [ 76/100], g_loss: 1.06808, d_loss: 1.27365
+epoch [ 77/100], g_loss: 1.06328, d_loss: 1.26634
+epoch [ 78/100], g_loss: 1.04430, d_loss: 1.26818
+epoch [ 79/100], g_loss: 1.05899, d_loss: 1.27218
+epoch [ 80/100], g_loss: 1.06076, d_loss: 1.26480
+epoch [ 81/100], g_loss: 1.07679, d_loss: 1.26405
+epoch [ 82/100], g_loss: 1.07425, d_loss: 1.26262
+epoch [ 83/100], g_loss: 1.08701, d_loss: 1.26298
+epoch [ 84/100], g_loss: 1.07777, d_loss: 1.25308
+epoch [ 85/100], g_loss: 1.06905, d_loss: 1.26419
+epoch [ 86/100], g_loss: 1.08016, d_loss: 1.25603
+epoch [ 87/100], g_loss: 1.08649, d_loss: 1.24962
+epoch [ 88/100], g_loss: 1.09025, d_loss: 1.25294
+epoch [ 89/100], g_loss: 1.09038, d_loss: 1.24992
+epoch [ 90/100], g_loss: 1.10695, d_loss: 1.25070
+epoch [ 91/100], g_loss: 1.11464, d_loss: 1.23653
+epoch [ 92/100], g_loss: 1.11151, d_loss: 1.24744
+epoch [ 93/100], g_loss: 1.11372, d_loss: 1.25482
+epoch [ 94/100], g_loss: 1.09965, d_loss: 1.24798
+epoch [ 95/100], g_loss: 1.10330, d_loss: 1.24116
+epoch [ 96/100], g_loss: 1.12643, d_loss: 1.25593
+epoch [ 97/100], g_loss: 1.10968, d_loss: 1.23970
+epoch [ 98/100], g_loss: 1.10929, d_loss: 1.24683
+epoch [ 99/100], g_loss: 1.12180, d_loss: 1.24042
+epoch [100/100], g_loss: 1.13063, d_loss: 1.23275
